@@ -1,21 +1,31 @@
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const home = document.getElementById("home-bttn");
+const lessons = document.getElementById("misters-bttn");
+const anagrams = document.getElementById("anagrams-bttn");
 
-function playLetterSound(letter) {
-    const frequency = letter.charCodeAt(0) * 10;
+function goToLessons() {
+    lessons.addEventListener("click", () => {
+        window.location.href = "../lessons-page/lessons.html"
+    })
+};
+goToLessons();
 
-    const oscillator = audioContext.createOscillator();
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+function gotToAnagrams() {
+    anagrams.addEventListener("click", () => {
+        window.location.href = "../anagrams-page/anagrams.html"
+    })
+};
+gotToAnagrams();
 
-    oscillator.connect(audioContext.destination);
+function goToHome() {
+    home.addEventListener("click", () => {
+        window.location.href = "./home.html"
+    })
+};
+goToHome();
 
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.1);
+function setPointer() {
+    home.style.cursor = "pointer";
+    anagrams.style.cursor = "pointer";
+    lessons.style.cursor = "pointer";
 }
-
-const soundButton = document.getElementById('soundButton');
-
-soundButton.addEventListener('click', () => {
-    // Play the sound within the existing audio context
-    playLetterSound('A');
-});
+setPointer();
