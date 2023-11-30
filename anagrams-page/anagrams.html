@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./anagrams.css">
-    <script src="https://kit.fontawesome.com/9c00960078.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./anagrams.css" />
+
+    <script
+      src="https://kit.fontawesome.com/9c00960078.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Alfagram</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="window">
-        <img src="../utils/background.jpeg" alt="bg" id="bg">
-        <img src="../utils/logo.png" alt="logo" id="logo">
-        <header id="header">
-            
-            <button type="button" id="home-bttn">
-                Acasă
-            </button>
+      <!-- <img src="../utils/background.jpeg" alt="bg" id="bg" /> -->
+      <img src="../utils/logo.png" alt="logo" id="logo" />
+      <header id="header">
+        <button type="button" id="home-bttn">Acasă</button>
 
-            <button type="button" id="misters-bttn">
-                Mistere
-            </button>
+        <button type="button" id="misters-bttn">Mistere</button>
 
-            <button type="button" id="anagrams-bttn">
-                Anagrame
-            </button>
+        <button type="button" id="anagrams-bttn">Anagrame</button>
+      </header>
 
-        </header>
+      <main class="main-section">
+        <button class="navigate">
+          <img src="../utils/left-arrow.png" alt="Go Back" />
+        </button>
 
+        <section class="anagram-table">
+          <section class="anagram">
+            <span class="word">ALBINA</span>
+
+            <img
+              src="../utils/albina.jpeg"
+              alt="albina"
+              width="220"
+              height="200"
+            />
+          </section>
+
+          <section class="anagram-letters">
+            <span class="letter">L</span>
+            <span class="letter">A</span>
+            <span class="letter">I</span>
+            <span class="letter">B</span>
+            <span class="letter">N</span>
+            <span class="letter">A</span>
+          </section>
+
+          <button class="verify-button">Verifica</button>
+        </section>
+
+        <button class="navigate">
+          <img src="../utils/right-arrow.png" alt="Go Foward" />
+        </button>
+      </main>
     </div>
     <script src="./anagrams.js"></script>
-</body>
+  </body>
 </html>
