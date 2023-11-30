@@ -51,7 +51,7 @@ html, body {
     font-weight: bold;
 }
 
-#header button:hover{
+#header button:hover, #next-page-bttn:hover{
     color: #e5c2a2;
     background-color: #103935;
     border: 2px solid #e5c2a2;
