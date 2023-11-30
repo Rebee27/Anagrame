@@ -70,7 +70,7 @@ html, body {
 
 #title{
     position: relative;
-    top: 8%;
+    top: 5%;
     display: flex;
     justify-content: center;
 }
@@ -80,43 +80,55 @@ i{
     cursor: pointer;
     margin-right: 5%;
     margin-top: 2%;
-    transition: font-size 0.3s;
+    transition: transform 0.3s ease;
 }
 
 i:hover{
     color:white;
-    font-size: 400%;
+    transform: scale(1.5);
+    transition-duration: 0.3s;
 }
 
 #letter{
     font-size: 450%;
     margin: 0;
-    transition: font-size 0.3s;
+    transition: transform 0.3s ease;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
 }
 
-#letter:hover{
-    color:white;
-    font-size: 550%;
+#letter:hover {
+    transform: scale(1.5);
+    transition-duration: 0.3s;
+    color: white;
 }
 
 
 #words {
-    display: inline-flex;
-    margin-top: 3%;
-    align-items: baseline
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 70%;
 }
 
-.word-img {
-    position: relative;
-    text-align: center;
-    margin: 5%;
-    margin-top: 10%;
-    width: 70%;
-    height: auto;
+.item{
+    width: 20%;
+    height: 60%;    
+    display: block;
+    justify-content: center;
+    align-items: center;
 }
 
+.item img{
+    height: 90%;
+    width: 90%;
+}
+
+.text{
+
+}
+
+/*
 #words p{
     margin:0;
     width: 60%;
@@ -124,19 +136,9 @@ i:hover{
     font-weight: bold;
     text-align: center;
 
-}
+}*/
 
-.word{
-    width: 40%;
-}
-
-
-#w1{
-    margin-left: 5%;
-    width: 55%;
-}
-
-
+/*
 span{
     color: red;
-}
+}*/
