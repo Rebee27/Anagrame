@@ -75,6 +75,31 @@ html, body {
     left: 18%;
 }
 
+#cloud-img, #text{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 36%;
+}
+
+#cloud p{
+    position: absolute;
+    top: 23%;
+    left: 30%;
+    font-size: 210%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+
+#text{
+    width: 40%;
+    height: 40%;
+    top: 23%;
+    left: 42%;
+}
+
 #next-page-bttn{
     position: absolute;
     top: 80%;
