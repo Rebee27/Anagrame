@@ -1,10 +1,10 @@
 A - cal,  avion, luna
-E - munte, stele, erou/elefant
+E - munte, stele, elefant
 I - inima, iarba, flori
 O - omida , joc, maro
 U - urs, bunica, unu
 C - carte, parc, scut
-M - melc/mere , urma, pom
+M - melc , urma, pom
 N - nor, cana, pian
 R - radiera, floare, pictor
 L - lupa, alune, farul
