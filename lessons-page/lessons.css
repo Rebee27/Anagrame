@@ -57,6 +57,13 @@ html, body {
     border: 2px solid #e5c2a2;
 }
 
+.main{
+    display: flex;
+    justify-content: space-evenly;
+    top: 50%;
+    left: 50%;
+}
+
 #container{
     position: absolute;
     top: 22%;
@@ -67,12 +74,24 @@ html, body {
     border: 10px inset white;
 }
 
+.navigate-left {
+    position: absolute;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    top: 55%;
+    left: 5%;
+}
 
-#title{
-    position: relative;
-    top: 5%;
-    display: flex;
-    justify-content: center;
+.navigate-right {
+    position: absolute;
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    top: 55%;
+    right: 5%;
 }
 
 i{
@@ -89,56 +108,62 @@ i:hover{
     transition-duration: 0.3s;
 }
 
-#letter{
-    font-size: 450%;
+#title{
+    position: relative;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.letter{
+    font-size: 220%;
     margin: 0;
     transition: transform 0.3s ease;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
 }
 
-#letter:hover {
+.letter:hover {
     transform: scale(1.5);
     transition-duration: 0.3s;
     color: white;
 }
 
-
-#words {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 70%;
-}
-
-.item{
-    width: 20%;
-    height: 60%;    
+.words{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+}
 
+.imgs, .cuvinte{
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    background-color: white;
+    justify-content: space-around;
+    margin-top: 5%;
 }
 
-.item img{
+.imgs{
+    margin-left: 13%;
+}
+
+
+.image1, .image2, .image3{
+    width: 100%; 
     height: auto;
-    max-width: 90%;
-    margin-bottom: auto; 
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto;
+    max-width: 100%; 
+    margin-bottom: auto;
+    display: block;
 }
 
-.text{
+.word1, .word2, .word3 {
+    text-align: center;
     font-weight: bold;
-    text-align: center; 
-    margin-top: 5px;
     font-size: 200%;
-    margin-top: auto; /* Push the text to the top */
-    margin-bottom: 0; /* Remove any bottom margin */
+    margin-top: -1%;
 }
 
-span{
+.colored-letter {
     color: red;
+    font-weight: bold;
 }
