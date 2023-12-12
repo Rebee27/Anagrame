@@ -194,7 +194,7 @@ function buildTable(word) {
     // Add The Letter
     const letterElement = document.createElement("span");
     letterElement.classList.add("letter");
-    letterElement.textContent = word["litera"];
+    letterElement.textContent = "”" + word["litera"] + "”";
     letter.appendChild(letterElement);
 
 
@@ -248,25 +248,6 @@ function buildTable(word) {
     word2.innerHTML = colorizeLetter(word["text2"], word["litera"]);
     word3.innerHTML = colorizeLetter(word["text3"], word["litera"]);
 
-
-    // Add letter sound
-    const soundIcon = document.getElementById("soundIcon"); // Get the sound icon element
-
-    // Adding screen reader functionality for the letter "A" when clicking the sound icon
-    soundIcon.addEventListener('click', () => {
-        const letterA = document.getElementById('letter').textContent.trim();
-        const speech = new SpeechSynthesisUtterance("Litera"+ letterA);
-
-        // Set speech settings for Romanian
-        speech.lang = 'ro-RO'; // Change language to Romanian
-
-        // Set the rate (speed) of speech
-        speech.rate = 0.7; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-        // Speak the letter "A" in Romanian
-        window.speechSynthesis.speak(speech);
-    });
-
 }
 
 function colorizeLetter(text, targetLetter) {
@@ -284,7 +265,7 @@ function setLetterReader() {
 
     // Adding screen reader functionality for the letter when clicking the sound icon
     soundIcon.addEventListener('click', () => {
-        const letter = document.querySelector('.letter').textContent.trim();
+        let letter = document.querySelector('.letter').textContent.trim().toLowerCase();
         const speech = new SpeechSynthesisUtterance("Litera"+ letter);
 
         // Set speech settings for Romanian
