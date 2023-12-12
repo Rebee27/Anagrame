@@ -135,3 +135,15 @@ body {
   margin: 34px 55px 29px 575px;
   padding: 0 22px;
 }
+
+.letter.draging {
+  opacity: 0;
+}
+
+.correct {
+  background: lightgreen;
+}
+
+.wrong {
+  background: red;
+}
