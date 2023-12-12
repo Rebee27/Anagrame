@@ -1,6 +1,7 @@
 const home = document.getElementById("home-bttn");
 const lessons = document.getElementById("misters-bttn");
 const anagrams = document.getElementById("anagrams-bttn");
+const soundIcon = document.getElementById("soundIcon"); 
 
 function goToLessons() {
     lessons.addEventListener("click", () => {
@@ -29,6 +30,9 @@ function setPointer() {
     lessons.style.cursor = "pointer";
 }
 setPointer();
+
+
+
 
 const words = [
     {
@@ -244,6 +248,25 @@ function buildTable(word) {
     word2.innerHTML = colorizeLetter(word["text2"], word["litera"]);
     word3.innerHTML = colorizeLetter(word["text3"], word["litera"]);
 
+
+    // Add letter sound
+    const soundIcon = document.getElementById("soundIcon"); // Get the sound icon element
+
+    // Adding screen reader functionality for the letter "A" when clicking the sound icon
+    soundIcon.addEventListener('click', () => {
+        const letterA = document.getElementById('letter').textContent.trim();
+        const speech = new SpeechSynthesisUtterance("Litera"+ letterA);
+
+        // Set speech settings for Romanian
+        speech.lang = 'ro-RO'; // Change language to Romanian
+
+        // Set the rate (speed) of speech
+        speech.rate = 0.7; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+
+        // Speak the letter "A" in Romanian
+        window.speechSynthesis.speak(speech);
+    });
+
 }
 
 function colorizeLetter(text, targetLetter) {
@@ -254,3 +277,25 @@ function colorizeLetter(text, targetLetter) {
 
 buildTable(words[0]);
 
+
+// Add letter reader
+function setLetterReader() {
+    const soundIcon = document.getElementById("soundIcon"); // Get the sound icon element
+
+    // Adding screen reader functionality for the letter when clicking the sound icon
+    soundIcon.addEventListener('click', () => {
+        const letter = document.querySelector('.letter').textContent.trim();
+        const speech = new SpeechSynthesisUtterance("Litera"+ letter);
+
+        // Set speech settings for Romanian
+        speech.lang = 'ro-RO'; // Change language to Romanian
+
+        // Set the rate (speed) of speech
+        speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+
+        // Speak the letter in Romanian
+        window.speechSynthesis.speak(speech);
+    });
+}
+
+setLetterReader();
