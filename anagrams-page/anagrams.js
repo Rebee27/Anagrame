@@ -89,33 +89,64 @@ const words = [
 ];
 
 let position = 0;
+let isGameOver = false;
 
-let backButton = document.querySelector("[data-back]");
-let fowardButton = document.querySelector("[data-foward]");
+const checkWord = () => {
+  let correct = true;
 
-backButton.addEventListener("click", () => {
-  if (position >= 0 && position <= words.length - 1) {
-    position--;
-
-    if (position === -1) {
-      position = 0;
+  const listOfLetterrs = document.querySelector(".anagram-letters");
+  for (let i = 0; i < listOfLetterrs.children.length; i++) {
+    if (
+      listOfLetterrs.children[i].textContent !==
+      words[position]["text"].charAt(i)
+    ) {
+      correct = false;
     }
-
-    buildTable(words[position]);
   }
-});
-
-fowardButton.addEventListener("click", () => {
-  if (position >= 0 && position <= words.length - 1) {
+  if (correct === true) {
+    console.log("Cuvant corect!!");
     position++;
-
-    if (position === words.length) {
-      position = words.length - 1;
+    if (position < words.length) {
+      buildTable(words[position]);
+    } else {
+      console.log("End of the game...");
     }
-
-    buildTable(words[position]);
+  } else {
+    console.log("Cuvant gresit!!");
   }
-});
+};
+
+const verifyButton = document.querySelector(".verify-button");
+verifyButton.addEventListener("click", checkWord);
+
+buildTable(words[position]);
+
+// let backButton = document.querySelector("[data-back]");
+// let fowardButton = document.querySelector("[data-foward]");
+
+// backButton.addEventListener("click", () => {
+//   if (position >= 0 && position <= words.length - 1) {
+//     position--;
+
+//     if (position === -1) {
+//       position = 0;
+//     }
+
+//     buildTable(words[position]);
+//   }
+// });
+
+// fowardButton.addEventListener("click", () => {
+//   if (position >= 0 && position <= words.length - 1) {
+//     position++;
+
+//     if (position === words.length) {
+//       position = words.length - 1;
+//     }
+
+//     buildTable(words[position]);
+//   }
+// });
 
 function buildTable(word) {
   const anagramSection = document.querySelector(".anagram");
@@ -143,8 +174,59 @@ function buildTable(word) {
     const anagramLetterElement = document.createElement("span");
     anagramLetterElement.classList.add("letter");
     anagramLetterElement.textContent = word["random"].charAt(i);
+    anagramLetterElement.draggable = true;
     anagramLettersSection.appendChild(anagramLetterElement);
   }
-}
 
-buildTable(words[0]);
+  const letters = document.querySelectorAll(".letter");
+  const sortableList = document.querySelector(".anagram-letters");
+
+  letters.forEach((letter) => {
+    letter.addEventListener("dragstart", () => {
+      setTimeout(() => {
+        letter.classList.add("draging");
+      }, 0);
+    });
+
+    letter.addEventListener("dragend", () => {
+      letter.classList.remove("draging");
+    });
+  });
+
+  const initSortableLisst = (e) => {
+    e.preventDefault();
+    const draggingItem = sortableList.querySelector(".draging");
+
+    const siblings = [
+      ...sortableList.querySelectorAll(".letter:not(.draging)"),
+    ];
+
+    let nextSibling = siblings.find((sibling) => {
+      return e.clientX <= sibling.offsetLeft + sibling.offsetWidth / 2;
+    });
+
+    sortableList.insertBefore(draggingItem, nextSibling);
+    colorLetters();
+  };
+
+  sortableList.addEventListener("dragover", initSortableLisst);
+  sortableList.addEventListener("dragenter", (e) => e.preventDefault());
+
+  const colorLetters = () => {
+    const sortableList = document.querySelector(".anagram-letters");
+    for (let i = 0; i < sortableList.children.length; i++) {
+      sortableList.children[i].classList.remove("correct");
+      sortableList.children[i].classList.remove("wrong");
+    }
+
+    for (let i = 0; i < sortableList.children.length; i++) {
+      if (sortableList.children[i].textContent === word["text"].charAt(i)) {
+        sortableList.children[i].classList.add("correct");
+      } else {
+        sortableList.children[i].classList.add("wrong");
+      }
+    }
+  };
+
+  colorLetters();
+}
