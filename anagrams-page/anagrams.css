@@ -62,7 +62,6 @@ body {
 .main-section {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 15%;
 }
 
 .anagram-table {
@@ -146,4 +145,12 @@ body {
 
 .wrong {
   background: red;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  color: white;
+  font-size: 4rem;
 }

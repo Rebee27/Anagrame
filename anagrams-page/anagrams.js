@@ -30,127 +30,138 @@ function setPointer() {
 }
 setPointer();
 
+let gameOver = false;
+
 const words = [
-  {
-    text: "ALBINA",
-    random: "LANIBA",
-    image: "../utils/albina.jpeg",
-  },
   {
     text: "CAL",
     random: "ALC",
     image: "../utils/horse.png",
+    score: 4,
   },
   {
     text: "NOR",
     random: "RON",
     image: "../utils/cloud2.png",
-  },
-  {
-    text: "OMIDA",
-    random: "MIODA",
-    image: "../utils/catterpilar.png",
-  },
-  {
-    text: "ELEFANT",
-    random: "EFANELT",
-    image: "../utils/elephant.png",
-  },
-  {
-    text: "FLORI",
-    random: "LIFOR",
-    image: "../utils/flowers.png",
-  },
-  {
-    text: "INIMA",
-    random: "MINAI",
-    image: "../utils/heart.png",
-  },
-  {
-    text: "LUNA",
-    random: "NALU",
-    image: "../utils/moon.png",
-  },
-  {
-    text: "MUNTE",
-    random: "TENUM",
-    image: "../utils/mountain.png",
-  },
-  {
-    text: "AVION",
-    random: "NOVAI",
-    image: "../utils/plane.png",
+    score: 4,
   },
   {
     text: "STELE",
     random: "TELSE",
     image: "../utils/stars.jpg",
+    score: 9,
+  },
+  {
+    text: "AVION",
+    random: "NOVAI",
+    image: "../utils/plane.png",
+    score: 9,
+  },
+  {
+    text: "OMIDA",
+    random: "MIODA",
+    image: "../utils/catterpilar.png",
+    score: 9,
+  },
+  {
+    text: "FLORI",
+    random: "LIFOR",
+    image: "../utils/flowers.png",
+    score: 9,
+  },
+  {
+    text: "MUNTE",
+    random: "TENUM",
+    image: "../utils/mountain.png",
+    score: 9,
+  },
+  {
+    text: "INIMA",
+    random: "MINAI",
+    image: "../utils/heart.png",
+    score: 9,
+  },
+  {
+    text: "LUNA",
+    random: "NALU",
+    image: "../utils/moon.png",
+    score: 11,
+  },
+  {
+    text: "ALBINA",
+    random: "LANIBA",
+    image: "../utils/albina.jpeg",
+    score: 11,
+  },
+  {
+    text: "ELEFANT",
+    random: "EFANELT",
+    image: "../utils/elephant.png",
+    score: 16,
   },
 ];
 
 let position = 0;
 let isGameOver = false;
+let totalScore = 0;
+
+const closeButton = document.querySelector("dialog button");
+const dialogText = document.querySelector("dialog p");
 
 const checkWord = () => {
   let correct = true;
 
   const listOfLetterrs = document.querySelector(".anagram-letters");
-  for (let i = 0; i < listOfLetterrs.children.length; i++) {
-    if (
-      listOfLetterrs.children[i].textContent !==
-      words[position]["text"].charAt(i)
-    ) {
-      correct = false;
-    }
-  }
-  if (correct === true) {
-    console.log("Cuvant corect!!");
-    position++;
-    if (position < words.length) {
-      buildTable(words[position]);
-    } else {
-      console.log("End of the game...");
+  if (position < words.length) {
+    for (let i = 0; i < listOfLetterrs.children.length; i++) {
+      if (
+        listOfLetterrs.children[i].textContent !==
+        words[position]["text"].charAt(i)
+      ) {
+        correct = false;
+      }
     }
   } else {
-    console.log("Cuvant gresit!!");
+    correct = true;
+  }
+
+  if (correct === true) {
+    position++;
+    if (position < words.length) {
+      const score = document.querySelector(".score");
+      totalScore += words[position - 1]["score"];
+      score.textContent = `SCOR: ${totalScore}`;
+      alert("Cuvant corect!! Poti trece la urmatorul cuvant!!");
+      buildTable(words[position]);
+    } else if (position === words.length) {
+      if (!gameOver) {
+        const score = document.querySelector(".score");
+        totalScore += words[position - 1]["score"];
+        score.textContent = `SCOR: ${totalScore}`;
+        gameOver = true;
+      }
+      alert("Cuvant Corect!! Sfarsitul jocului...");
+
+      position--;
+    }
+  } else {
+    alert("Cuvant gresit... Incearca din nou!!");
   }
 };
 
 const verifyButton = document.querySelector(".verify-button");
+
 verifyButton.addEventListener("click", checkWord);
 
 buildTable(words[position]);
 
-// let backButton = document.querySelector("[data-back]");
-// let fowardButton = document.querySelector("[data-foward]");
-
-// backButton.addEventListener("click", () => {
-//   if (position >= 0 && position <= words.length - 1) {
-//     position--;
-
-//     if (position === -1) {
-//       position = 0;
-//     }
-
-//     buildTable(words[position]);
-//   }
-// });
-
-// fowardButton.addEventListener("click", () => {
-//   if (position >= 0 && position <= words.length - 1) {
-//     position++;
-
-//     if (position === words.length) {
-//       position = words.length - 1;
-//     }
-
-//     buildTable(words[position]);
-//   }
-// });
-
 function buildTable(word) {
   const anagramSection = document.querySelector(".anagram");
   const anagramLettersSection = document.querySelector(".anagram-letters");
+
+  const scoreElement = document.querySelector(".score");
+  scoreElement.textContent = `SCOR: ${totalScore}`;
+  scoreElement.classList.add("score");
 
   anagramSection.innerHTML = "";
   anagramLettersSection.innerHTML = "";
