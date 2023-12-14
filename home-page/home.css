@@ -114,3 +114,15 @@ html, body {
     font-weight: bold;
     cursor: pointer;
 }
+
+#soundIcon{
+    font-size: 280%;
+    margin-left: 73%;
+    margin-top: 7%;
+}
+
+#soundIcon:hover{
+    font-size: 300%;
+    transform: scale(1.5);
+    transition-duration: 0.3s;
+}

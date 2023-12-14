@@ -194,7 +194,7 @@ function buildTable(word) {
     // Add The Letter
     const letterElement = document.createElement("span");
     letterElement.classList.add("letter");
-    letterElement.textContent = "”" + word["litera"] + "”";
+    letterElement.textContent = word["litera"];
     letter.appendChild(letterElement);
 
 
@@ -266,7 +266,9 @@ function setLetterReader() {
     // Adding screen reader functionality for the letter when clicking the sound icon
     soundIcon.addEventListener('click', () => {
         let letter = document.querySelector('.letter').textContent.trim().toLowerCase();
-        const speech = new SpeechSynthesisUtterance("Litera"+ letter);
+        const speechText = getSpeechText(letter);
+
+        const speech = new SpeechSynthesisUtterance(speechText);
 
         // Set speech settings for Romanian
         speech.lang = 'ro-RO'; // Change language to Romanian
@@ -277,6 +279,31 @@ function setLetterReader() {
         // Speak the letter in Romanian
         window.speechSynthesis.speak(speech);
     });
+}
+
+function getSpeechText(letter) {
+    // Handle special cases for letter combinations
+    switch (letter) {
+        case 'm':
+            return 'em';
+        case 'n':
+            return 'en';
+        case 'r':
+            return 'er';
+        case 'l':
+            return 'el';
+        case 'd':
+            return 'de';
+        case 'f':
+            return 'ef';
+        case 'c':
+            return 'ce';
+        case 'e':
+            return 'e';
+        // Add more cases as needed
+        default:
+            return letter;
+    }
 }
 
 setLetterReader();
