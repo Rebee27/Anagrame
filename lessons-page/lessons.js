@@ -2,6 +2,7 @@ const home = document.getElementById("home-bttn");
 const lessons = document.getElementById("misters-bttn");
 const anagrams = document.getElementById("anagrams-bttn");
 const soundIcon = document.getElementById("soundIcon"); 
+const logo = document.getElementById("logo");
 
 function goToLessons() {
     lessons.addEventListener("click", () => {
@@ -24,10 +25,18 @@ function goToHome() {
 };
 goToHome();
 
+function goToLogo() {
+    logo.addEventListener("click", () => {
+        window.location.href = "../home-page/home.html"
+    })
+};
+goToLogo();
+
 function setPointer() {
     home.style.cursor = "pointer";
     anagrams.style.cursor = "pointer";
     lessons.style.cursor = "pointer";
+    logo.style.cursor = "pointer";
 }
 setPointer();
 

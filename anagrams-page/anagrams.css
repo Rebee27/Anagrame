@@ -156,3 +156,24 @@ body {
   color: white;
   font-size: 3rem;
 }
+
+.animation-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Make sure the container doesn't interfere with clicks */
+}
+
+.animation {
+  /* Add styles for your animation element (like or smiley face) */
+  width: 100px;
+  height: 100px;
+  background: url('../utils/smiley-face.png') no-repeat center center;
+  background-size: contain;
+  transition: transform 1s ease-in-out; /* Adjust the animation duration */
+}
+
+.animation.play {
+  transform: scale(4); /* Adjust the scale or other properties for the animation */
+}

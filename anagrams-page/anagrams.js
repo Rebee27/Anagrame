@@ -1,6 +1,7 @@
 const home = document.getElementById("home-bttn");
 const lessons = document.getElementById("misters-bttn");
 const anagrams = document.getElementById("anagrams-bttn");
+const logo = document.getElementById("logo");
 
 function goToLessons() {
   lessons.addEventListener("click", () => {
@@ -23,10 +24,18 @@ function goToHome() {
 }
 goToHome();
 
+function goToLogo() {
+  logo.addEventListener("click", () => {
+      window.location.href = "../home-page/home.html"
+  })
+};
+goToLogo();
+
 function setPointer() {
   home.style.cursor = "pointer";
   anagrams.style.cursor = "pointer";
   lessons.style.cursor = "pointer";
+  logo.style.cursor = "pointer";
 }
 setPointer();
 
@@ -108,14 +117,38 @@ let totalScore = 0;
 const closeButton = document.querySelector("dialog button");
 const dialogText = document.querySelector("dialog p");
 
-const checkWord = () => {
+const animationContainer = document.querySelector('.animation-container');
+
+
+function setReader() {
+  const verifyBttn = document.getElementById("verify-button");
+
+  // Adding screen reader functionality for the letter
+  verifyBttn.addEventListener('click', () => {
+      const text = "Felicitări! Ai format cuvântul corect!";
+      const speech = new SpeechSynthesisUtterance(text);
+
+      // Set speech settings for Romanian
+      speech.lang = 'ro-RO'; // Change language to Romanian
+
+      // Set the rate (speed) of speech
+      speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+
+      speech.pitch = 1;
+
+      // Speak the letter in Romanian
+      window.speechSynthesis.speak(speech);
+  });
+}
+
+function checkWord() {
   let correct = true;
 
-  const listOfLetterrs = document.querySelector(".anagram-letters");
+  const listOfLetters = document.querySelector(".anagram-letters");
   if (position < words.length) {
-    for (let i = 0; i < listOfLetterrs.children.length; i++) {
+    for (let i = 0; i < listOfLetters.children.length; i++) {
       if (
-        listOfLetterrs.children[i].textContent !==
+        listOfLetters.children[i].textContent !==
         words[position]["text"].charAt(i)
       ) {
         correct = false;
@@ -131,8 +164,11 @@ const checkWord = () => {
       const score = document.querySelector(".score");
       totalScore += words[position - 1]["score"];
       score.textContent = `SCOR: ${totalScore}`;
-      alert("Cuvant corect!! Poti trece la urmatorul cuvant!!");
-      buildTable(words[position]);
+
+      // Play animation and move to the next word after animation disappears
+      playAnimation(() => {
+        buildTable(words[position]);
+      });
     } else if (position === words.length) {
       if (!gameOver) {
         const score = document.querySelector(".score");
@@ -140,14 +176,44 @@ const checkWord = () => {
         score.textContent = `SCOR: ${totalScore}`;
         gameOver = true;
       }
-      alert("Cuvant Corect!! Sfarsitul jocului...");
-
-      position--;
+      // Play animation for the last word
+      playAnimation();
     }
   } else {
     alert("Cuvant gresit... Incearca din nou!!");
   }
-};
+}
+
+function playAnimation(callback) {
+  const animationContainer = document.querySelector('.animation-container');
+  animationContainer.innerHTML = ''; // Clear previous content
+
+  // Create and append your animation element (like or smiley face)
+  const animationElement = document.createElement('div');
+  animationElement.classList.add('animation');
+  animationContainer.appendChild(animationElement);
+
+  // Trigger animation
+  setTimeout(() => {
+    animationElement.classList.add('play');
+  }, 0);
+
+  //setReader();
+
+  // Clear animation after some time (adjust the delay according to your needs)
+  setTimeout(() => {
+    animationElement.classList.remove('play');
+    animationContainer.innerHTML = '';
+
+    // Call the callback function after the animation is complete
+    if (callback) {
+      callback();
+    }
+  }, 2000);
+  
+}
+
+
 
 const verifyButton = document.querySelector(".verify-button");
 
