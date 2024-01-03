@@ -48,10 +48,10 @@ const words = [
         litera: "A",
         image1: "../utils/avion.jpg",
         image2: "../utils/cal.jpg",
-        image3: "../utils/luna.jpg",
+        image3: "../utils/balon.png",
         text1: "A - V I - O N",
         text2: "C A L",
-        text3: "L U - N A",
+        text3: "B A - L O N",
     },
     {
         litera: "E",
