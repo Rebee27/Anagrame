@@ -130,7 +130,7 @@ const dialogText = document.querySelector("dialog p");
 const animationContainer = document.querySelector(".animation-container");
 
 function setReader() {
-  const verifyBttn = document.getElementById("verify-button");
+  const verifyBttn = document.querySelector(".verify-button");
 
   // Adding screen reader functionality for the letter
   verifyBttn.addEventListener("click", () => {
@@ -209,7 +209,7 @@ function playAnimation(callback) {
     animationElement.classList.add("play");
   }, 0);
 
-  //setReader();
+  // setReader();
 
   // Clear animation after some time (adjust the delay according to your needs)
   setTimeout(() => {
@@ -226,6 +226,7 @@ function playAnimation(callback) {
 const verifyButton = document.querySelector(".verify-button");
 
 verifyButton.addEventListener("click", checkWord);
+setReader();
 
 buildTable(words[position]);
 
