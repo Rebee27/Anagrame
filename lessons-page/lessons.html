@@ -23,26 +23,27 @@
 
             <button type="button" id="anagrams-bttn">
                 ANAGRAME
-            </button>
+            </button>            
 
         </header>
 
-        
         <button class="navigate-left" data-back>
             <img src="../utils/left-arrow.png" alt="Go Back" />
           </button>
 
         <div id="container">
+
             <div id="title">
+                <i id="info" class="fas fa-info-circle"></i>
                 <i id="soundIcon" class="fas fa-volume-up"></i>
                 <div class="letter"></div>
             </div>
 
             <div class="words">
                 <div class="imgs">
-                    <div class="image1"></div>
-                    <div class="image2"></div>
-                    <div class="image3"></div>
+                    <div class="image1" id="image1"></div>
+                    <div class="image2" id="image2"></div>
+                    <div class="image3" id="image3"></div>
                 </div>
 
                 <div class="cuvinte">
@@ -56,6 +57,17 @@
         <button class="navigate-right">
             <img src="../utils/right-arrow.png" alt="Go Foward" data-foward />
         </button>
+
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Haideți să învățăm împreună literele!</p>
+                <p>Pentru a asculta sunetul fiecărei litere, apăsați pe iconița de sunet.</p>
+                <p>Pentru fiecare literă, avem câte 3 cuvinte care conțin litera noastră.</p>
+                <p>Dacă apăsați pe fiecare imagine afișată pentru fiecare cuvânt, puteți asculta cuvântul.</p>
+                <p>Multă distracție!</p>
+            </div>
+        </div>
 
     </div>
     <script src="./lessons.js"></script>

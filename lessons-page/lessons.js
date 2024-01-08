@@ -290,7 +290,72 @@ function setLetterReader() {
     });
 }
 
-function getSpeechText(letter) {
+
+function setWordReader1() {
+    const image1 = document.getElementById("image1");
+
+    image1.addEventListener('click', () => {
+        let word1 = document.querySelector('.word1').textContent.trim().toLowerCase();
+        const w1 = getSpeechText(word1);
+
+        const speech1 = new SpeechSynthesisUtterance(w1);
+
+        // Set speech settings for Romanian
+        speech1.lang = 'ro-RO'; // Change language to Romanian
+
+        // Set the rate (speed) of speech
+        speech1.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+
+        // Speak the letter in Romanian
+        window.speechSynthesis.speak(speech1);
+    });
+}
+
+function setWordReader2() {
+    const image2 = document.getElementById("image2");
+
+    // Adding screen reader functionality for the letter when clicking the sound icon
+    image2.addEventListener('click', () => {
+        let word2 = document.querySelector('.word2').textContent.trim().toLowerCase();
+        const w2 = getSpeechText(word2);
+
+        const speech2 = new SpeechSynthesisUtterance(w2);
+
+        // Set speech settings for Romanian
+        speech2.lang = 'ro-RO'; // Change language to Romanian
+
+        // Set the rate (speed) of speech
+        speech2.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+
+        // Speak the letter in Romanian
+        window.speechSynthesis.speak(speech2);
+    });
+}
+
+function setWordReader3() {
+    const image3 = document.getElementById("image3");
+
+    // Adding screen reader functionality for the letter when clicking the sound icon
+    image3.addEventListener('click', () => {
+        let word3 = document.querySelector('.word3').textContent.trim().toLowerCase();
+        const w3 = getSpeechText(word3);
+
+        const speech3 = new SpeechSynthesisUtterance(w3);
+
+        // Set speech settings for Romanian
+        speech3.lang = 'ro-RO'; // Change language to Romanian
+
+        // Set the rate (speed) of speech
+        speech3.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+
+        // Speak the letter in Romanian
+        window.speechSynthesis.speak(speech3);
+    });
+}
+
+function getSpeechText(word) {
+    return word.replace(/[\s-]/g, ''); // Remove spaces and hyphens from the word
+
     // Handle special cases for letter combinations
     switch (letter) {
         case 'm':
@@ -315,4 +380,37 @@ function getSpeechText(letter) {
     }
 }
 
+
 setLetterReader();
+setWordReader1();
+setWordReader2();
+setWordReader3();
+
+
+// Get the info icon and the modal
+var infoIcon = document.getElementById("info");
+var infoModal = document.getElementById("infoModal");   
+var bodyElement = document.body;
+
+// Get the close button inside the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// When the user clicks the info icon, open the modal
+infoIcon.onclick = function() {
+    infoModal.style.display = "block";
+    //bodyElement.classList.add("blur");
+}
+
+// When the user clicks the close button, close the modal
+closeBtn.onclick = function() {
+    infoModal.style.display = "none";
+    bodyElement.classList.remove("blur");
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == infoModal) {
+        infoModal.style.display = "none";
+        bodyElement.classList.remove("blur");
+    }
+}   
