@@ -26,9 +26,9 @@ goToHome();
 
 function goToLogo() {
   logo.addEventListener("click", () => {
-      window.location.href = "../home-page/home.html"
-  })
-};
+    window.location.href = "../home-page/home.html";
+  });
+}
 goToLogo();
 
 function setPointer() {
@@ -110,34 +110,43 @@ const words = [
   },
 ];
 
-let position = 0;
+if (!localStorage.getItem("wordIndex")) {
+  localStorage.setItem("wordIndex", "0");
+}
+
+if (!localStorage.getItem("score")) {
+  localStorage.setItem("score", "0");
+}
+
+let wordIndex = Number(localStorage.getItem("wordIndex"));
+let cachedScore = Number(localStorage.getItem("score"));
+let position = wordIndex;
 let isGameOver = false;
-let totalScore = 0;
+let totalScore = cachedScore;
 
 const closeButton = document.querySelector("dialog button");
 const dialogText = document.querySelector("dialog p");
 
-const animationContainer = document.querySelector('.animation-container');
-
+const animationContainer = document.querySelector(".animation-container");
 
 function setReader() {
   const verifyBttn = document.getElementById("verify-button");
 
   // Adding screen reader functionality for the letter
-  verifyBttn.addEventListener('click', () => {
-      const text = "Felicitări! Ai format cuvântul corect!";
-      const speech = new SpeechSynthesisUtterance(text);
+  verifyBttn.addEventListener("click", () => {
+    const text = "Felicitări! Ai format cuvântul corect!";
+    const speech = new SpeechSynthesisUtterance(text);
 
-      // Set speech settings for Romanian
-      speech.lang = 'ro-RO'; // Change language to Romanian
+    // Set speech settings for Romanian
+    speech.lang = "ro-RO"; // Change language to Romanian
 
-      // Set the rate (speed) of speech
-      speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+    // Set the rate (speed) of speech
+    speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
 
-      speech.pitch = 1;
+    speech.pitch = 1;
 
-      // Speak the letter in Romanian
-      window.speechSynthesis.speak(speech);
+    // Speak the letter in Romanian
+    window.speechSynthesis.speak(speech);
   });
 }
 
@@ -160,9 +169,11 @@ function checkWord() {
 
   if (correct === true) {
     position++;
+    localStorage.setItem("wordIndex", position.toString());
     if (position < words.length) {
       const score = document.querySelector(".score");
       totalScore += words[position - 1]["score"];
+      localStorage.setItem("score", totalScore.toString());
       score.textContent = `SCOR: ${totalScore}`;
 
       // Play animation and move to the next word after animation disappears
@@ -185,35 +196,32 @@ function checkWord() {
 }
 
 function playAnimation(callback) {
-  const animationContainer = document.querySelector('.animation-container');
-  animationContainer.innerHTML = ''; // Clear previous content
+  const animationContainer = document.querySelector(".animation-container");
+  animationContainer.innerHTML = ""; // Clear previous content
 
   // Create and append your animation element (like or smiley face)
-  const animationElement = document.createElement('div');
-  animationElement.classList.add('animation');
+  const animationElement = document.createElement("div");
+  animationElement.classList.add("animation");
   animationContainer.appendChild(animationElement);
 
   // Trigger animation
   setTimeout(() => {
-    animationElement.classList.add('play');
+    animationElement.classList.add("play");
   }, 0);
 
   //setReader();
 
   // Clear animation after some time (adjust the delay according to your needs)
   setTimeout(() => {
-    animationElement.classList.remove('play');
-    animationContainer.innerHTML = '';
+    animationElement.classList.remove("play");
+    animationContainer.innerHTML = "";
 
     // Call the callback function after the animation is complete
     if (callback) {
       callback();
     }
   }, 2000);
-  
 }
-
-
 
 const verifyButton = document.querySelector(".verify-button");
 
