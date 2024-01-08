@@ -7,7 +7,7 @@ html, body {
 }
 
 #window {
-    min-height: 100vh;;
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
 }
@@ -56,6 +56,7 @@ html, body {
     background-color: #103935;
     border: 2px solid #e5c2a2;
 }
+
 
 .main{
     display: flex;
@@ -166,4 +167,57 @@ i:hover{
 .colored-letter {
     color: red;
     font-weight: bold;
+}
+
+.image1:hover, .image2:hover, .image3:hover{
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+/* Add this to your existing CSS */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 25%;
+    top: 25%;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 2%;
+    padding: 2%;
+    border: 1px solid #888;
+    width: 91%;
+    height: 81%;
+    font-size: 130%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 300%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+
+.blur {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+#infoModal.blur {
+    filter: none;  /* Remove the blur effect from the modal */
+    pointer-events: auto;  /* Enable pointer events on the modal */
 }
