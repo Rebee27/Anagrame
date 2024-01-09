@@ -66,7 +66,7 @@ body {
 }
 
 .anagram-table {
-  margin-top: 2%;
+  margin-top: 5%;
   width: fit-content;
   height: fit-content;
   border: 10px inset white;
@@ -169,11 +169,13 @@ body {
   /* Add styles for your animation element (like or smiley face) */
   width: 100px;
   height: 100px;
-  background: url('../utils/smiley-face.png') no-repeat center center;
+  background: url("../utils/smiley-face-2.png") no-repeat center center;
   background-size: contain;
   transition: transform 1s ease-in-out; /* Adjust the animation duration */
 }
 
 .animation.play {
-  transform: scale(4); /* Adjust the scale or other properties for the animation */
+  transform: scale(
+    4
+  ); /* Adjust the scale or other properties for the animation */
 }

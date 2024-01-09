@@ -1,223 +1,219 @@
-html, body {
-    margin:0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #window {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-#bg{
-    margin:0;
-    width:100%;
-    height: 100%;
-    object-fit: cover; 
-    position: absolute;
-    top: 0;
-    left: 0;
+#bg {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-#logo{
-    position: absolute;
-    width: 8%;
-    margin-left: 3%;
-    margin-top: 1%;
+#logo {
+  position: absolute;
+  width: 8%;
+  margin-left: 3%;
+  margin-top: 1%;
 }
 
-#header{
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;  
-    align-items: flex-start; 
-    margin-top: 1%;
-    width: 100%;
-    height: 30%;
+#header {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 1%;
+  width: 100%;
+  height: 30%;
 }
 
-#header button{
-    margin: 2% 8% 2% 0;
-    width: 12%;
-    height: 30%;
-    border-radius: 48%;
-    border: 1px solid #072A26;
-    font-size: 135%;
-    background-color: #e5c2a2;
-    color: #072A26;
-    font-weight: bold;
+#header button {
+  margin: 2% 8% 2% 0;
+  width: 12%;
+  height: 30%;
+  border-radius: 48%;
+  border: 1px solid #072a26;
+  font-size: 135%;
+  background-color: #e5c2a2;
+  color: #072a26;
+  font-weight: bold;
 }
 
-#header button:hover{
-    color: #e5c2a2;
-    background-color: #103935;
-    border: 2px solid #e5c2a2;
+#header button:hover {
+  color: #e5c2a2;
+  background-color: #103935;
+  border: 2px solid #e5c2a2;
 }
 
-
-.main{
-    display: flex;
-    justify-content: space-evenly;
-    top: 50%;
-    left: 50%;
+.main {
+  display: flex;
+  justify-content: space-evenly;
+  top: 50%;
+  left: 50%;
 }
 
-#container{
-    position: absolute;
-    top: 22%;
-    left: 13%;
-    width: 75%;
-    height: 70%;
-    background-color: #e5c2a2;
-    border: 10px inset white;
+#container {
+  position: absolute;
+  top: 22%;
+  left: 13%;
+  width: 75%;
+  height: 70%;
+  background-color: #e5c2a2;
+  border: 10px inset white;
 }
 
 .navigate-left {
-    position: absolute;
-    background: none;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    top: 55%;
-    left: 5%;
+  position: absolute;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  top: 55%;
+  left: 5%;
 }
 
 .navigate-right {
-    position: absolute;
-    background: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    top: 55%;
-    right: 5%;
+  position: absolute;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  top: 55%;
+  right: 5%;
 }
 
-i{
-    font-size: 300%;
-    cursor: pointer;
-    margin-right: 5%;
-    margin-top: 2%;
-    transition: transform 0.3s ease;
+i {
+  font-size: 300%;
+  cursor: pointer;
+  margin-right: 5%;
+  margin-top: 2%;
+  transition: transform 0.3s ease;
 }
 
-i:hover{
-    color:white;
-    transform: scale(1.5);
-    transition-duration: 0.3s;
+i:hover {
+  color: white;
+  transform: scale(1.5);
+  transition-duration: 0.3s;
 }
 
-#title{
-    position: relative;
-    top: 5%;
-    display: flex;
-    justify-content: center;
+#title {
+  position: relative;
+  top: 5%;
+  display: flex;
+  justify-content: center;
 }
 
-.letter{
-    font-size: 220%;
-    margin: 0;
-    transition: transform 0.3s ease;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    cursor: pointer;
+.letter {
+  font-size: 220%;
+  margin: 0;
+  transition: transform 0.3s ease;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  cursor: pointer;
 }
 
 .letter:hover {
-    transform: scale(1.5);
-    transition-duration: 0.3s;
-    color: white;
+  transform: scale(1.5);
+  transition-duration: 0.3s;
+  color: white;
 }
 
-.words{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.words {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.imgs, .cuvinte{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 5%;
+.imgs,
+.cuvinte {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5%;
 }
 
-.imgs{
-    margin-left: 13%;
+.imgs {
+  margin-left: 13%;
 }
 
-
-.image1, .image2, .image3{
-    width: 100%; 
-    height: auto;
-    max-width: 100%; 
-    margin-bottom: auto;
-    display: block;
+.image1,
+.image2,
+.image3 {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-bottom: auto;
+  display: block;
 }
 
-.word1, .word2, .word3 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 200%;
-    margin-top: -1%;
+.word1,
+.word2,
+.word3 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 200%;
+  margin-top: -1%;
 }
 
 .colored-letter {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
-.image1:hover, .image2:hover, .image3:hover{
-    transform: scale(1.2);
-    transition-duration: 0.3s;
-    cursor: pointer;
+.image1:hover,
+.image2:hover,
+.image3:hover {
+  transform: scale(1.2);
+  transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 /* Add this to your existing CSS */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 25%;
-    top: 25%;
-    width: 50%;
-    height: 50%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 2%;
-    padding: 2%;
-    border: 1px solid #888;
-    width: 91%;
-    height: 81%;
-    font-size: 130%;
-    text-align: center;
+  background-color: #fefefe;
+  margin: 2%;
+  padding: 2%;
+  border: 1px solid #888;
+  width: 35%;
+  height: 35%;
+  font-size: 130%;
+  text-align: center;
+  position: absolute;
+  top: 25%;
+  left: 30%;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 300%;
-    font-weight: bold;
-    cursor: pointer;
+  color: #aaa;
+  float: right;
+  font-size: 300%;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover {
-    color: black;
-}
-
-
-.blur {
-    filter: blur(5px);
-    pointer-events: none;
-}
-
-#infoModal.blur {
-    filter: none;  /* Remove the blur effect from the modal */
-    pointer-events: auto;  /* Enable pointer events on the modal */
+  color: black;
 }
