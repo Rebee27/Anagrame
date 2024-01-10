@@ -212,7 +212,7 @@ function buildTable(word) {
   const audioElement1 = document.createElement("audio");
   audioElement1.src = `../utils/sounds/${word["litera"]}_image1.mp3`;
   imgElement1.appendChild(audioElement1);
-  imgElement1.addEventListener("click", () => {
+  imgElement1.addEventListener("mouseover", () => {
     audioElement1.play();
   });
   document.querySelector(".image1").appendChild(imgElement1);
@@ -226,7 +226,7 @@ function buildTable(word) {
   const audioElement2 = document.createElement("audio");
   audioElement2.src = `../utils/sounds/${word["litera"]}_image2.mp3`;
   imgElement2.appendChild(audioElement2);
-  imgElement2.addEventListener("click", () => {
+  imgElement2.addEventListener("mouseover", () => {
     audioElement2.play();
   });
   document.querySelector(".image2").appendChild(imgElement2);
@@ -240,7 +240,7 @@ function buildTable(word) {
   const audioElement3 = document.createElement("audio");
   audioElement3.src = `../utils/sounds/${word["litera"]}_image3.mp3`;
   imgElement3.appendChild(audioElement3);
-  imgElement3.addEventListener("click", () => {
+  imgElement3.addEventListener("mouseover", () => {
     audioElement3.play();
   });
   document.querySelector(".image3").appendChild(imgElement3);
@@ -283,7 +283,7 @@ buildTable(words[0]);
 
 const letterAudioElement = document.createElement("audio");
 
-soundIcon.addEventListener("click", () => {
+soundIcon.addEventListener("mouseover", () => {
   // Replace "A.mp3" with the appropriate audio file based on the current letter
   letterAudioElement.src = `../utils/sounds/${words[position].litera}.mp3`;
   letterAudioElement.play();

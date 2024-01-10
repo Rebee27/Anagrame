@@ -54,7 +54,7 @@ const soundIconAudio = document.createElement("audio");
 soundIcon.appendChild(soundIconAudio);  // Append the audio element to the sound icon
 
 // Adding screen reader functionality for the letter when clicking the sound icon
-soundIcon.addEventListener('click', () => {
+soundIcon.addEventListener('mouseover', () => {
     soundIconAudio.src = "utils/sounds/bun-venit.mp3";
     soundIconAudio.play();
 });
