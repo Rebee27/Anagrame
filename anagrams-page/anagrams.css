@@ -131,8 +131,12 @@ body {
   text-transform: uppercase;
   border-radius: 30px;
   background-color: #072a26;
-  margin: 34px 55px 29px 575px;
+  margin: 34px 55px 29px 475px;
   padding: 0 22px;
+}
+
+.restart {
+  margin-left: 2px;
 }
 
 .letter.draging {
@@ -163,25 +167,28 @@ body {
   pointer-events: none; /* Make sure the container doesn't interfere with clicks */
 }
 
-.animation {
+.correct-animation {
   /* Add styles for your animation element (like or smiley face) */
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 400px;
   background-size: contain;
   transition: transform 1s ease-in-out; /* Adjust the animation duration */
-}
-
-.animation-correct {
   background: url("../utils/smiley-face.png") no-repeat center center;
 }
 
-.animation-wrong {
+.wrong-animation {
+  /* Add styles for your animation element (like or smiley face) */
+  width: 400px;
+  height: 400px;
+  background-size: contain;
+  transition: transform 1s ease-in-out; /* Adjust the animation duration */
   background: url("../utils/sad-face.png") no-repeat center center;
 }
 
-.animation.play {
+.correct-animation.play,
+.wrong-animation.play {
   transform: scale(
-    4
+    2
   ); /* Adjust the scale or other properties for the animation */
 }
 
