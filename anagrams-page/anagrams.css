@@ -66,6 +66,7 @@ body {
 }
 
 .anagram-table {
+  position: absolute;
   margin-top: 5%;
   width: fit-content;
   height: fit-content;
@@ -131,8 +132,12 @@ body {
   text-transform: uppercase;
   border-radius: 30px;
   background-color: #072a26;
-  margin: 34px 55px 29px 575px;
+  margin: 34px 55px 29px 250px;
   padding: 0 22px;
+}
+
+.restart {
+  margin-left: 2px;
 }
 
 .letter.draging {
@@ -163,33 +168,90 @@ body {
   pointer-events: none; /* Make sure the container doesn't interfere with clicks */
 }
 
-.animation {
+.correct-animation {
   /* Add styles for your animation element (like or smiley face) */
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 400px;
   background-size: contain;
   transition: transform 1s ease-in-out; /* Adjust the animation duration */
-}
-
-.animation-correct {
   background: url("../utils/smiley-face.png") no-repeat center center;
 }
 
-.animation-wrong {
+.wrong-animation {
+  /* Add styles for your animation element (like or smiley face) */
+  width: 400px;
+  height: 400px;
+  background-size: contain;
+  transition: transform 1s ease-in-out; /* Adjust the animation duration */
   background: url("../utils/sad-face.png") no-repeat center center;
 }
 
-.animation.play {
+.correct-animation.play,
+.wrong-animation.play {
   transform: scale(
-    4
+    2
   ); /* Adjust the scale or other properties for the animation */
 }
 
 .soundIcon {
   font-size: 280%;
+  color: black;
 }
 
 .soundIcon:hover {
+  transform: scale(1.5);
+  transition-duration: 0.3s;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  /* z-index: 1; */
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  top: 0%;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 2%;
+  padding: 2%;
+  border: 1px solid #888;
+  width: 35%;
+  height: 45%;
+  font-size: 130%;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  top: 25%;
+  left: 30%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 300%;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+i {
+  color: white;
+  font-size: 300%;
+  cursor: pointer;
+  /* margin-right: 5%;
+  margin-top: 9%; */
+  transition: transform 0.3s ease;
+}
+
+i:hover {
   transform: scale(1.5);
   transition-duration: 0.3s;
 }

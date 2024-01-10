@@ -23,6 +23,7 @@
       </header>
 
       <p class="score"></p>
+
       <main class="main-section">
         <section class="anagram-table">
           <div class="animation-container"></div>
@@ -32,9 +33,30 @@
           <section class="anagram-letters"></section>
 
           <button class="verify-button">Verifica</button>
+          <button class="verify-button restart">Reincepe jocul</button>
+          <button id="infoBtn" class="verify-button restart">Info</button>
         </section>
       </main>
+      <div id="infoModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>
+            În jocul de anagrame, vei vedea un amestec de litere care alcătuiesc
+            un cuvânt. Misiunea ta este să rearanjezi aceste litere pentru a
+            forma cuvântul corect. Pentru a face acest lucru, poți să tragi și
+            să plasezi literele în pozițiile potrivite pe ecran. Când ai pus
+            toate literele în ordinea corectă, acestea vor deveni verzi, ceea ce
+            indică că ai reușit să rezolvi anagrama.
+          </p>
+          <p>
+            Pentru a asculta fiecare cuvant, indreptati mouse-ul catre sunet.
+            Scopul final este să rezolvi toate anagramele și să avansezi în joc!
+          </p>
+        </div>
+      </div>
     </div>
+
+    <!-- </div> -->
     <script src="./anagrams.js"></script>
   </body>
 </html>

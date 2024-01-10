@@ -179,9 +179,9 @@ function checkWord() {
       corectWordAudioElement.play();
 
       // Play animation and move to the next word after animation disappears
-      // playAnimation(() => {
-      //   buildTable(words[position]);
-      // });
+      playCorrectAnimation(() => {
+        buildTable(words[position]);
+      });
     } else if (position === words.length) {
       if (!gameOver) {
         const score = document.querySelector(".score");
@@ -195,32 +195,67 @@ function checkWord() {
         localStorage.setItem("score", `${100}`);
       }
       // Play animation for the last word
-      // playAnimation();
+      playCorrectAnimation();
     }
   } else {
+    playWrongAnimation();
     wrongWordAudioElement.play();
   }
 
-  playAnimation(() => {
-    position = Number(localStorage.getItem("wordIndex"));
-    buildTable(words[position]);
-  });
+  // playCorrectAnimation(() => {
+  //   position = Number(localStorage.getItem("wordIndex"));
+  //   buildTable(words[position]);
+  // });
 }
 
-function playAnimation(callback) {
+function playCorrectAnimation(callback) {
   const animationContainer = document.querySelector(".animation-container");
   animationContainer.innerHTML = ""; // Clear previous content
 
   // Create and append your animation element (like or smiley face)
   const animationElement = document.createElement("div");
-  animationElement.classList.add("animation");
+  animationElement.classList.add("correct-animation");
 
-  const correct = Boolean(localStorage.getItem("correct"));
-  if (correct === true) {
-    animationElement.classList.add("animation-correct");
-  } else {
-    animationElement.classList.add("animation-wrong");
-  }
+  // const correct = Boolean(localStorage.getItem("correct"));
+  // if (correct === true) {
+  //   animationElement.classList.add("animation-correct");
+  // } else {
+  //   animationElement.classList.add("animation-wrong");
+  // }
+
+  animationContainer.appendChild(animationElement);
+
+  // Trigger animation
+  setTimeout(() => {
+    animationElement.classList.add("play");
+  }, 0);
+
+  // Clear animation after some time (adjust the delay according to your needs)
+  setTimeout(() => {
+    animationElement.classList.remove("play");
+    animationContainer.innerHTML = "";
+
+    // Call the callback function after the animation is complete
+    if (callback) {
+      callback();
+    }
+  }, 2000);
+}
+
+function playWrongAnimation(callback) {
+  const animationContainer = document.querySelector(".animation-container");
+  animationContainer.innerHTML = ""; // Clear previous content
+
+  // Create and append your animation element (like or smiley face)
+  const animationElement = document.createElement("div");
+  animationElement.classList.add("wrong-animation");
+
+  // const correct = Boolean(localStorage.getItem("correct"));
+  // if (correct === true) {
+  //   animationElement.classList.add("animation-correct");
+  // } else {
+  //   animationElement.classList.add("animation-wrong");
+  // }
 
   animationContainer.appendChild(animationElement);
 
@@ -242,6 +277,22 @@ function playAnimation(callback) {
 }
 
 const verifyButton = document.querySelector(".verify-button");
+
+const restartButton = document.querySelector(".restart");
+restartButton.addEventListener("click", () => {
+  localStorage.setItem("gameOver", "false");
+  localStorage.setItem("score", "0");
+  localStorage.setItem("wordIndex", "0");
+  localStorage.setItem("correct", "false");
+
+  restartAudioElement = document.createElement("audio");
+  restartAudioElement.src = "../utils/sounds/restart.mp3";
+  restartAudioElement.play();
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 3000);
+});
 
 verifyButton.addEventListener("click", checkWord);
 
@@ -361,3 +412,32 @@ function buildTable(word) {
 
   colorLetters();
 }
+
+// Get the info icon and the modal
+var infoIcon = document.querySelector("#infoBtn");
+var infoModal = document.querySelector("#infoModal");
+var bodyElement = document.body;
+
+// Get the close button inside the modal
+var closeBtn = document.querySelector(".close");
+
+// When the user clicks the info icon, open the modal
+infoIcon.addEventListener("click", () => {
+  infoModal.style.display = "block";
+  const audioElement = document.createElement("audio");
+  audioElement.src = "../utils/sounds/info_anagrame.mp3";
+  audioElement.play();
+});
+
+// When the user clicks the close button, close the modal
+closeBtn.addEventListener("click", function () {
+  infoModal.style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener("click", function () {
+  if (event.target == infoModal) {
+    infoModal.style.display = "none";
+    bodyElement.classList.remove("blur");
+  }
+});
