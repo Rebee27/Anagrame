@@ -209,7 +209,13 @@ function buildTable(word) {
   imgElement1.height = 200;
   imgElement1.alt = word["text1"];
   imgElement1.src = word["image1"];
-  img1.appendChild(imgElement1);
+  const audioElement1 = document.createElement("audio");
+  audioElement1.src = `../utils/sounds/${word["litera"]}_image1.mp3`;
+  imgElement1.appendChild(audioElement1);
+  imgElement1.addEventListener("click", () => {
+    audioElement1.play();
+  });
+  document.querySelector(".image1").appendChild(imgElement1);
 
   // Add the Image2
   const imgElement2 = document.createElement("img");
@@ -217,7 +223,13 @@ function buildTable(word) {
   imgElement2.height = 200;
   imgElement2.alt = word["text2"];
   imgElement2.src = word["image2"];
-  img2.appendChild(imgElement2);
+  const audioElement2 = document.createElement("audio");
+  audioElement2.src = `../utils/sounds/${word["litera"]}_image2.mp3`;
+  imgElement2.appendChild(audioElement2);
+  imgElement2.addEventListener("click", () => {
+    audioElement2.play();
+  });
+  document.querySelector(".image2").appendChild(imgElement2);
 
   // Add the Image3
   const imgElement3 = document.createElement("img");
@@ -225,7 +237,13 @@ function buildTable(word) {
   imgElement3.height = 200;
   imgElement3.alt = word["text3"];
   imgElement3.src = word["image3"];
-  img3.appendChild(imgElement3);
+  const audioElement3 = document.createElement("audio");
+  audioElement3.src = `../utils/sounds/${word["litera"]}_image3.mp3`;
+  imgElement3.appendChild(audioElement3);
+  imgElement3.addEventListener("click", () => {
+    audioElement3.play();
+  });
+  document.querySelector(".image3").appendChild(imgElement3);
 
   // Add the Word1
   const wordElement1 = document.createElement("p");
@@ -263,133 +281,14 @@ function colorizeLetter(text, targetLetter) {
 
 buildTable(words[0]);
 
-// Add letter reader
-function setLetterReader() {
-  const soundIcon = document.getElementById("soundIcon"); // Get the sound icon element
+const letterAudioElement = document.createElement("audio");
 
-  // Adding screen reader functionality for the letter when clicking the sound icon
-  soundIcon.addEventListener("click", () => {
-    let letter = document
-      .querySelector(".letter")
-      .textContent.trim()
-      .toLowerCase();
-    const speechText = getSpeechText(letter);
+soundIcon.addEventListener("click", () => {
+  // Replace "A.mp3" with the appropriate audio file based on the current letter
+  letterAudioElement.src = `../utils/sounds/${words[position].litera}.mp3`;
+  letterAudioElement.play();
+});
 
-    const speech = new SpeechSynthesisUtterance(speechText);
-
-    // Set speech settings for Romanian
-    speech.lang = "ro-RO"; // Change language to Romanian
-
-    // Set the rate (speed) of speech
-    speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-    // Speak the letter in Romanian
-    window.speechSynthesis.speak(speech);
-  });
-}
-
-function setWordReader1() {
-  const image1 = document.getElementById("image1");
-
-  image1.addEventListener("click", () => {
-    let word1 = document
-      .querySelector(".word1")
-      .textContent.trim()
-      .toLowerCase();
-    const w1 = getSpeechText(word1);
-
-    const speech1 = new SpeechSynthesisUtterance(w1);
-
-    // Set speech settings for Romanian
-    speech1.lang = "ro-RO"; // Change language to Romanian
-
-    // Set the rate (speed) of speech
-    speech1.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-    // Speak the letter in Romanian
-    window.speechSynthesis.speak(speech1);
-  });
-}
-
-function setWordReader2() {
-  const image2 = document.getElementById("image2");
-
-  // Adding screen reader functionality for the letter when clicking the sound icon
-  image2.addEventListener("click", () => {
-    let word2 = document
-      .querySelector(".word2")
-      .textContent.trim()
-      .toLowerCase();
-    const w2 = getSpeechText(word2);
-
-    const speech2 = new SpeechSynthesisUtterance(w2);
-
-    // Set speech settings for Romanian
-    speech2.lang = "ro-RO"; // Change language to Romanian
-
-    // Set the rate (speed) of speech
-    speech2.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-    // Speak the letter in Romanian
-    window.speechSynthesis.speak(speech2);
-  });
-}
-
-function setWordReader3() {
-  const image3 = document.getElementById("image3");
-
-  // Adding screen reader functionality for the letter when clicking the sound icon
-  image3.addEventListener("click", () => {
-    let word3 = document
-      .querySelector(".word3")
-      .textContent.trim()
-      .toLowerCase();
-    const w3 = getSpeechText(word3);
-
-    const speech3 = new SpeechSynthesisUtterance(w3);
-
-    // Set speech settings for Romanian
-    speech3.lang = "ro-RO"; // Change language to Romanian
-
-    // Set the rate (speed) of speech
-    speech3.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-    // Speak the letter in Romanian
-    window.speechSynthesis.speak(speech3);
-  });
-}
-
-function getSpeechText(word) {
-  return word.replace(/[\s-]/g, ""); // Remove spaces and hyphens from the word
-
-  // Handle special cases for letter combinations
-  switch (letter) {
-    case "m":
-      return "em";
-    case "n":
-      return "en";
-    case "r":
-      return "er";
-    case "l":
-      return "el";
-    case "d":
-      return "de";
-    case "f":
-      return "ef";
-    case "c":
-      return "ce";
-    case "e":
-      return "e";
-    // Add more cases as needed
-    default:
-      return letter;
-  }
-}
-
-setLetterReader();
-setWordReader1();
-setWordReader2();
-setWordReader3();
 
 // Get the info icon and the modal
 var infoIcon = document.getElementById("info");
@@ -397,22 +296,25 @@ var infoModal = document.getElementById("infoModal");
 var bodyElement = document.body;
 
 // Get the close button inside the modal
-var closeBtn = document.getElementsByClassName("close")[0];
+var closeBtn = document.querySelector(".close");
 
 // When the user clicks the info icon, open the modal
 infoIcon.onclick = function () {
   infoModal.style.display = "block";
+  const audioElement = document.createElement("audio");
+  audioElement.src = "../utils/sounds/info-litere.mp3";
+  audioElement.play();
 };
 
 // When the user clicks the close button, close the modal
-closeBtn.onclick = function () {
+closeBtn.addEventListener("click", function () {
   infoModal.style.display = "none";
-};
+});
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
+window.addEventListener("click", function () {
   if (event.target == infoModal) {
     infoModal.style.display = "none";
     bodyElement.classList.remove("blur");
   }
-};
+});

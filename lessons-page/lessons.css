@@ -198,9 +198,10 @@ i:hover {
   padding: 2%;
   border: 1px solid #888;
   width: 35%;
-  height: 35%;
+  height: 45%;
   font-size: 130%;
   text-align: center;
+  font-weight: bold;
   position: absolute;
   top: 25%;
   left: 30%;
