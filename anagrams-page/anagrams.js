@@ -19,14 +19,14 @@ gotToAnagrams();
 
 function goToHome() {
   home.addEventListener("click", () => {
-    window.location.href = "../home-page/home.html";
+    window.location.href = "../index.html";
   });
 }
 goToHome();
 
 function goToLogo() {
   logo.addEventListener("click", () => {
-    window.location.href = "../home-page/home.html";
+    window.location.href = "../index.html";
   });
 }
 goToLogo();

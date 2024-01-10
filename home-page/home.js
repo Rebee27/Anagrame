@@ -6,35 +6,35 @@ const logo = document.getElementById("logo");
 
 function goToLessons() {
     lessons.addEventListener("click", () => {
-        window.location.href = "../lessons-page/lessons.html"
+        window.location.href = "lessons-page/lessons.html"
     })
 };
 goToLessons();
 
 function gotToAnagrams() {
     anagrams.addEventListener("click", () => {
-        window.location.href = "../anagrams-page/anagrams.html"
+        window.location.href = "anagrams-page/anagrams.html"
     })
 };
 gotToAnagrams();
 
 function goToHome() {
     home.addEventListener("click", () => {
-        window.location.href = "./home.html"
+        window.location.href = "index.html"
     })
 };
 goToHome();
 
 function goToLessons2() {
     nextPage.addEventListener("click", () => {
-        window.location.href = "../lessons-page/lessons.html"
+        window.location.href = "lessons-page/lessons.html"
     })
 };
 goToLessons2();
 
 function goToLogo() {
     logo.addEventListener("click", () => {
-        window.location.href = "../home-page/home.html"
+        window.location.href = "index.html"
     })
 };
 goToLogo();
@@ -48,46 +48,21 @@ function setPointer() {
 }
 setPointer();
 
-function setReader() {
-    const soundIcon = document.getElementById("soundIcon"); // Get the sound icon element
 
-    // Adding screen reader functionality for the letter when clicking the sound icon
-    soundIcon.addEventListener('click', () => {
-        const text = document.getElementById("cloud").textContent;
-        const speech = new SpeechSynthesisUtterance(text);
+// Create a single audio element for the sound icon
+const soundIconAudio = document.createElement("audio");
+soundIcon.appendChild(soundIconAudio);  // Append the audio element to the sound icon
 
-        // Set speech settings for Romanian
-        speech.lang = 'ro-RO'; // Change language to Romanian
+// Adding screen reader functionality for the letter when clicking the sound icon
+soundIcon.addEventListener('click', () => {
+    soundIconAudio.src = "utils/sounds/bun-venit.mp3";
+    soundIconAudio.play();
+});
 
-        // Set the rate (speed) of speech
-        speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
+const button = document.getElementById("next-page-bttn");
 
-        speech.pitch = 1;
-
-        // Speak the letter in Romanian
-        window.speechSynthesis.speak(speech);
-    });
-}
-setReader();
-
-function setReader2() {
-    const button = document.getElementById("next-page-bttn"); 
-
-    // Adding screen reader functionality for the letter when clicking the sound icon
-    button.addEventListener('mouseover', () => {
-        const text = document.getElementById("next-page-bttn").textContent;
-        const speech = new SpeechSynthesisUtterance(text);
-
-        // Set speech settings for Romanian
-        speech.lang = 'ro-RO'; // Change language to Romanian
-
-        // Set the rate (speed) of speech
-        speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-        speech.pitch = 1;
-
-        // Speak the letter in Romanian
-        window.speechSynthesis.speak(speech);
-    });
-}
-setReader2();
+// Adding screen reader functionality for the letter when clicking the sound icon
+button.addEventListener('mouseover', () => {
+    soundIconAudio.src = "utils/sounds/aventura.mp3";
+    soundIconAudio.play();
+});
