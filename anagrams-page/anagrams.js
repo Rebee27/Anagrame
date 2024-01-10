@@ -39,7 +39,7 @@ function setPointer() {
 }
 setPointer();
 
-let gameOver = false;
+let gameOver = Boolean(localStorage.getItem("gameOver"));
 
 const words = [
   {
@@ -99,7 +99,7 @@ const words = [
   {
     text: "ALBINA",
     random: "LANIBA",
-    image: "../utils/albina.jpg",
+    image: "../utils/albina.jpeg",
     score: 11,
   },
   {
@@ -110,12 +110,29 @@ const words = [
   },
 ];
 
+const corectWordAudioElement = document.createElement("audio");
+corectWordAudioElement.src = "../utils/sounds/correct_word.mp3";
+
+const wrongWordAudioElement = document.createElement("audio");
+wrongWordAudioElement.src = "../utils/sounds/wrong_word.mp3";
+
+const endGameAudioElement = document.createElement("audio");
+endGameAudioElement.src = "../utils/sounds/endgame.mp3";
+
 if (!localStorage.getItem("wordIndex")) {
   localStorage.setItem("wordIndex", "0");
 }
 
 if (!localStorage.getItem("score")) {
   localStorage.setItem("score", "0");
+}
+
+if (!localStorage.getItem("gameOver")) {
+  localStorage.setItem("gameOver", "false");
+}
+
+if (!localStorage.getItem("correct")) {
+  localStorage.setItem("correct", "false");
 }
 
 let wordIndex = Number(localStorage.getItem("wordIndex"));
@@ -129,29 +146,8 @@ const dialogText = document.querySelector("dialog p");
 
 const animationContainer = document.querySelector(".animation-container");
 
-function setReader() {
-  const verifyBttn = document.querySelector(".verify-button");
-
-  // Adding screen reader functionality for the letter
-  verifyBttn.addEventListener("click", () => {
-    const text = "Felicitări! Ai format cuvântul corect!";
-    const speech = new SpeechSynthesisUtterance(text);
-
-    // Set speech settings for Romanian
-    speech.lang = "ro-RO"; // Change language to Romanian
-
-    // Set the rate (speed) of speech
-    speech.rate = 0.3; // Adjust the rate as needed (0.1 is the slowest, 10 is the fastest)
-
-    speech.pitch = 1;
-
-    // Speak the letter in Romanian
-    window.speechSynthesis.speak(speech);
-  });
-}
-
 function checkWord() {
-  let correct = true;
+  let correct = Boolean(localStorage.getItem("correct"));
 
   const listOfLetters = document.querySelector(".anagram-letters");
   if (position < words.length) {
@@ -161,38 +157,54 @@ function checkWord() {
         words[position]["text"].charAt(i)
       ) {
         correct = false;
+        localStorage.setItem("correct", "false");
       }
     }
   } else {
     correct = true;
+    localStorage.setItem("correct", "true");
   }
 
   if (correct === true) {
     position++;
-    localStorage.setItem("wordIndex", position.toString());
+    if (!gameOver) {
+      localStorage.setItem("wordIndex", position.toString());
+    }
     if (position < words.length) {
       const score = document.querySelector(".score");
       totalScore += words[position - 1]["score"];
       localStorage.setItem("score", totalScore.toString());
       score.textContent = `SCOR: ${totalScore}`;
 
+      corectWordAudioElement.play();
+
       // Play animation and move to the next word after animation disappears
-      playAnimation(() => {
-        buildTable(words[position]);
-      });
+      // playAnimation(() => {
+      //   buildTable(words[position]);
+      // });
     } else if (position === words.length) {
       if (!gameOver) {
         const score = document.querySelector(".score");
         totalScore += words[position - 1]["score"];
         score.textContent = `SCOR: ${totalScore}`;
         gameOver = true;
+        localStorage.setItem("correct", "true");
+        localStorage.setItem("gameOver", "true");
+        endGameAudioElement.play();
+        localStorage.setItem("wordIndex", `${position - 1}`);
+        localStorage.setItem("score", `${100}`);
       }
       // Play animation for the last word
-      playAnimation();
+      // playAnimation();
     }
   } else {
-    alert("Cuvant gresit... Incearca din nou!!");
+    wrongWordAudioElement.play();
   }
+
+  playAnimation(() => {
+    position = Number(localStorage.getItem("wordIndex"));
+    buildTable(words[position]);
+  });
 }
 
 function playAnimation(callback) {
@@ -202,14 +214,20 @@ function playAnimation(callback) {
   // Create and append your animation element (like or smiley face)
   const animationElement = document.createElement("div");
   animationElement.classList.add("animation");
+
+  const correct = Boolean(localStorage.getItem("correct"));
+  if (correct === true) {
+    animationElement.classList.add("animation-correct");
+  } else {
+    animationElement.classList.add("animation-wrong");
+  }
+
   animationContainer.appendChild(animationElement);
 
   // Trigger animation
   setTimeout(() => {
     animationElement.classList.add("play");
   }, 0);
-
-  // setReader();
 
   // Clear animation after some time (adjust the delay according to your needs)
   setTimeout(() => {
@@ -226,11 +244,16 @@ function playAnimation(callback) {
 const verifyButton = document.querySelector(".verify-button");
 
 verifyButton.addEventListener("click", checkWord);
-setReader();
 
 buildTable(words[position]);
 
 function buildTable(word) {
+  const soundElement = document.createElement("i");
+  soundElement.classList.add("fas", "fa-volume-up", "soundIcon");
+  soundElement.addEventListener("mouseover", () => {
+    wordAudioElement.play();
+  });
+
   const anagramSection = document.querySelector(".anagram");
   const anagramLettersSection = document.querySelector(".anagram-letters");
 
@@ -247,6 +270,11 @@ function buildTable(word) {
   anagramTextElement.textContent = word["text"];
   anagramSection.appendChild(anagramTextElement);
 
+  const wordAudioElement = document.createElement("audio");
+  wordAudioElement.src = `../utils/sounds/${word["text"].toLowerCase()}.mp3`;
+
+  anagramSection.appendChild(soundElement);
+
   // Add the iamge
   const anagramImageElement = document.createElement("img");
   anagramImageElement.width = 220;
@@ -255,13 +283,30 @@ function buildTable(word) {
   anagramImageElement.src = word["image"];
   anagramSection.appendChild(anagramImageElement);
 
-  // Add the letters
-  for (let i = 0; i < word["random"].length; i++) {
-    const anagramLetterElement = document.createElement("span");
-    anagramLetterElement.classList.add("letter");
-    anagramLetterElement.textContent = word["random"].charAt(i);
-    anagramLetterElement.draggable = true;
-    anagramLettersSection.appendChild(anagramLetterElement);
+  if (localStorage.getItem("gameOver") === "false") {
+    gameOver = false;
+  } else {
+    gameOver = true;
+  }
+
+  if (!gameOver) {
+    // Add the letters
+    for (let i = 0; i < word["random"].length; i++) {
+      const anagramLetterElement = document.createElement("span");
+      anagramLetterElement.classList.add("letter");
+      anagramLetterElement.textContent = word["random"].charAt(i);
+      anagramLetterElement.draggable = true;
+      anagramLettersSection.appendChild(anagramLetterElement);
+    }
+  } else {
+    // Add the letters
+    for (let i = 0; i < word["random"].length; i++) {
+      const anagramLetterElement = document.createElement("span");
+      anagramLetterElement.classList.add("letter");
+      anagramLetterElement.textContent = word["text"].charAt(i);
+      anagramLetterElement.draggable = true;
+      anagramLettersSection.appendChild(anagramLetterElement);
+    }
   }
 
   const letters = document.querySelectorAll(".letter");
