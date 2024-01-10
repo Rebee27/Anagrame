@@ -90,8 +90,6 @@ body {
 }
 
 .word {
-  width: 255px;
-  height: 126px;
   color: #000;
   font-family: Inknut Antiqua;
   font-size: 50px;
@@ -169,13 +167,29 @@ body {
   /* Add styles for your animation element (like or smiley face) */
   width: 100px;
   height: 100px;
-  background: url("../utils/smiley-face-2.png") no-repeat center center;
   background-size: contain;
   transition: transform 1s ease-in-out; /* Adjust the animation duration */
+}
+
+.animation-correct {
+  background: url("../utils/smiley-face.png") no-repeat center center;
+}
+
+.animation-wrong {
+  background: url("../utils/sad-face.png") no-repeat center center;
 }
 
 .animation.play {
   transform: scale(
     4
   ); /* Adjust the scale or other properties for the animation */
+}
+
+.soundIcon {
+  font-size: 280%;
+}
+
+.soundIcon:hover {
+  transform: scale(1.5);
+  transition-duration: 0.3s;
 }
