@@ -412,3 +412,32 @@ function buildTable(word) {
 
   colorLetters();
 }
+
+// Get the info icon and the modal
+var infoIcon = document.querySelector("#infoBtn");
+var infoModal = document.querySelector("#infoModal");
+var bodyElement = document.body;
+
+// Get the close button inside the modal
+var closeBtn = document.querySelector(".close");
+
+// When the user clicks the info icon, open the modal
+infoIcon.addEventListener("click", () => {
+  infoModal.style.display = "block";
+  const audioElement = document.createElement("audio");
+  audioElement.src = "../utils/sounds/info_anagrame.mp3";
+  audioElement.play();
+});
+
+// When the user clicks the close button, close the modal
+closeBtn.addEventListener("click", function () {
+  infoModal.style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener("click", function () {
+  if (event.target == infoModal) {
+    infoModal.style.display = "none";
+    bodyElement.classList.remove("blur");
+  }
+});
