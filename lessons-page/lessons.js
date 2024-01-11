@@ -294,6 +294,7 @@ soundIcon.addEventListener("mouseover", () => {
 var infoIcon = document.getElementById("info");
 var infoModal = document.getElementById("infoModal");
 var bodyElement = document.body;
+const audioElement = document.createElement("audio");
 
 // Get the close button inside the modal
 var closeBtn = document.querySelector(".close");
@@ -301,7 +302,6 @@ var closeBtn = document.querySelector(".close");
 // When the user clicks the info icon, open the modal
 infoIcon.onclick = function () {
   infoModal.style.display = "block";
-  const audioElement = document.createElement("audio");
   audioElement.src = "../utils/sounds/info-litere.mp3";
   audioElement.play();
 };
@@ -309,6 +309,7 @@ infoIcon.onclick = function () {
 // When the user clicks the close button, close the modal
 closeBtn.addEventListener("click", function () {
   infoModal.style.display = "none";
+  stopAudio();
 });
 
 // When the user clicks anywhere outside of the modal, close it
@@ -316,5 +317,11 @@ window.addEventListener("click", function () {
   if (event.target == infoModal) {
     infoModal.style.display = "none";
     bodyElement.classList.remove("blur");
+    stopAudio();
   }
 });
+
+function stopAudio() {
+  audioElement.pause();
+  audioElement.currentTime = 0;
+}

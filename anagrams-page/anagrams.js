@@ -420,11 +420,11 @@ var bodyElement = document.body;
 
 // Get the close button inside the modal
 var closeBtn = document.querySelector(".close");
+const audioElement = document.createElement("audio");
 
 // When the user clicks the info icon, open the modal
 infoIcon.addEventListener("click", () => {
   infoModal.style.display = "block";
-  const audioElement = document.createElement("audio");
   audioElement.src = "../utils/sounds/info_anagrame.mp3";
   audioElement.play();
 });
@@ -432,6 +432,7 @@ infoIcon.addEventListener("click", () => {
 // When the user clicks the close button, close the modal
 closeBtn.addEventListener("click", function () {
   infoModal.style.display = "none";
+  stopAudio();
 });
 
 // When the user clicks anywhere outside of the modal, close it
@@ -439,5 +440,11 @@ window.addEventListener("click", function () {
   if (event.target == infoModal) {
     infoModal.style.display = "none";
     bodyElement.classList.remove("blur");
+    stopAudio();
   }
 });
+
+function stopAudio() {
+  audioElement.pause();
+  audioElement.currentTime = 0;
+}
