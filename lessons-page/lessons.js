@@ -43,10 +43,10 @@ setPointer();
 const words = [
   {
     litera: "A",
-    image1: "../utils/avion.jpg",
+    image1: "../utils/casa.png",
     image2: "../utils/cal.jpg",
     image3: "../utils/balon.jpg",
-    text1: "A - V I - O N",
+    text1: "C A - S A",
     text2: "C A L",
     text3: "B A - L O N",
   },
@@ -54,10 +54,10 @@ const words = [
     litera: "E",
     image1: "../utils/munte.jpg",
     image2: "../utils/stele.jpg",
-    image3: "../utils/elefant.jpg",
+    image3: "../utils/pasare.jpg",
     text1: "M U N - T E",
     text2: "S T E - L E",
-    text3: "E - L E - F A N T",
+    text3: "P A - S Ă - R E",
   },
   {
     litera: "I",
@@ -71,29 +71,29 @@ const words = [
   {
     litera: "O",
     image1: "../utils/omida.jpg",
-    image2: "../utils/joc.jpg",
-    image3: "../utils/maro.jpg",
+    image2: "../utils/morcov.jpg",
+    image3: "../utils/porumb.png",
     text1: "O - M I - D A",
-    text2: "J O C",
-    text3: "M A - R O",
+    text2: "M O R - C O V",
+    text3: "P O - R U M B",
   },
   {
     litera: "U",
     image1: "../utils/urs.jpg",
     image2: "../utils/bunica.jpg",
-    image3: "../utils/unu.jpg",
+    image3: "../utils/curcubeu.png",
     text1: "U R S",
     text2: "B U - N I - C A",
-    text3: "U N U",
+    text3: "C U R - C U - B E U",
   },
   {
     litera: "C",
     image1: "../utils/carte.jpg",
     image2: "../utils/parc.jpg",
-    image3: "../utils/scut.jpg",
+    image3: "../utils/caine.jpg",
     text1: "C A R - T E",
     text2: "P A R C",
-    text3: "S C U T",
+    text3: "C Â I - N E",
   },
   {
     litera: "M",
@@ -108,19 +108,19 @@ const words = [
     litera: "N",
     image1: "../utils/nor.jpg",
     image2: "../utils/cana.jpg",
-    image3: "../utils/pian.jpg",
+    image3: "../utils/randunica.jpg",
     text1: "N O R",
     text2: "C A - N A",
-    text3: "P I - A N",
+    text3: "R Â N - D U - N I - C Ă",
   },
   {
     litera: "R",
     image1: "../utils/radiera.jpg",
     image2: "../utils/flori.jpg",
-    image3: "../utils/pictor.jpg",
+    image3: "../utils/rata.jpg",
     text1: "R A - D I - E - R A",
     text2: "F L O A - R E",
-    text3: "P I C - T O R",
+    text3: "R A - Ț Ă",
   },
   {
     litera: "L",
@@ -133,10 +133,10 @@ const words = [
   },
   {
     litera: "D",
-    image1: "../utils/delfin.jpg",
+    image1: "../utils/dovleac.jpg",
     image2: "../utils/medic.jpg",
     image3: "../utils/gard.jpg",
-    text1: "D E L - F I N",
+    text1: "D O - V L E A C",
     text2: "M E - D I C",
     text3: "G A R D",
   },
@@ -198,10 +198,27 @@ function buildTable(word) {
   word3.innerHTML = "";
 
   // Add The Letter
+  const misterulLiterei = document.createElement("div");
+  misterulLiterei.classList.add("misterul-literei");
+  misterulLiterei.textContent = "MISTERUL LITEREI:";
+  letter.appendChild(misterulLiterei);
+
+  // Add the Letter below "Misterul Literei"
   const letterElement = document.createElement("span");
   letterElement.classList.add("letter");
   letterElement.textContent = word["litera"];
   letter.appendChild(letterElement);
+  
+  // Add "Misterele bunicii" above the photos
+  const mistereleBunicii = document.createElement("div");
+  const mistereleBunicii2 = document.createElement("div");
+  mistereleBunicii.classList.add("misterele-bunicii");
+  mistereleBunicii.textContent = "MISTERELE DIN GRADINA BUNICII:";
+  mistereleBunicii2.classList.add("misterele-bunicii2");
+  mistereleBunicii2.textContent = "";
+  img1.appendChild(mistereleBunicii);
+  img2.appendChild(mistereleBunicii2);
+  img3.appendChild(mistereleBunicii2);
 
   // Add the Image1
   const imgElement1 = document.createElement("img");

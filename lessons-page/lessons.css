@@ -116,11 +116,18 @@ i:hover {
 }
 
 .letter {
-  font-size: 220%;
+  font-size: 160%;
   margin: 0;
   transition: transform 0.3s ease;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   cursor: pointer;
+}
+
+.misterele-bunicii{
+	font-size:100%;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  
+	
 }
 
 .letter:hover {
@@ -154,8 +161,11 @@ i:hover {
   width: 100%;
   height: auto;
   max-width: 100%;
-  margin-bottom: auto;
+  margin-bottom: -30px;
   display: block;
+}
+.image2, .image3{
+	margin-top: 40px;
 }
 
 .word1,
