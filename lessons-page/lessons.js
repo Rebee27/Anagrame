@@ -52,10 +52,10 @@ const words = [
   },
   {
     litera: "E",
-    image1: "../utils/munte.jpg",
+    image1: "../utils/cirese.jpg",
     image2: "../utils/stele.jpg",
     image3: "../utils/pasare.jpg",
-    text1: "M U N - T E",
+    text1: "C I - R E - Ș E",
     text2: "S T E - L E",
     text3: "P A - S Ă - R E",
   },
@@ -108,10 +108,10 @@ const words = [
     litera: "N",
     image1: "../utils/nor.jpg",
     image2: "../utils/cana.jpg",
-    image3: "../utils/randunica.jpg",
+    image3: "../utils/gaina.jpg",
     text1: "N O R",
     text2: "C A - N A",
-    text3: "R Â N - D U - N I - C Ă",
+    text3: "G Ă - I - N Ă",
   },
   {
     litera: "R",
@@ -125,10 +125,10 @@ const words = [
   {
     litera: "L",
     image1: "../utils/lalea.jpg",
-    image2: "../utils/alune.jpg",
+    image2: "../utils/lamaie.jpg",
     image3: "../utils/far.jpg",
     text1: "L A - L E A",
-    text2: "A - L U - N E",
+    text2: "L Ă - M Â - I E",
     text3: "F A - R U L",
   },
   {
