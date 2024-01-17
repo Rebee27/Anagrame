@@ -154,7 +154,7 @@ body {
 
 .score {
   display: flex;
-  margin-left:22%;
+  margin-left: 22%;
   margin-top: 6%;
   color: white;
   font-size: 3rem;
@@ -165,7 +165,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  pointer-events: none; /* Make sure the container doesn't interfere with clicks */
+  pointer-events: none;
+  /* Make sure the container doesn't interfere with clicks */
 }
 
 .correct-animation {
@@ -173,7 +174,8 @@ body {
   width: 400px;
   height: 400px;
   background-size: contain;
-  transition: transform 1s ease-in-out; /* Adjust the animation duration */
+  transition: transform 1s ease-in-out;
+  /* Adjust the animation duration */
   background: url("../utils/smiley-face.png") no-repeat center center;
 }
 
@@ -182,15 +184,15 @@ body {
   width: 400px;
   height: 400px;
   background-size: contain;
-  transition: transform 1s ease-in-out; /* Adjust the animation duration */
+  transition: transform 1s ease-in-out;
+  /* Adjust the animation duration */
   background: url("../utils/sad-face.png") no-repeat center center;
 }
 
 .correct-animation.play,
 .wrong-animation.play {
-  transform: scale(
-    2
-  ); /* Adjust the scale or other properties for the animation */
+  transform: scale(2);
+  /* Adjust the scale or other properties for the animation */
 }
 
 .soundIcon {
@@ -246,12 +248,63 @@ i {
   color: white;
   font-size: 300%;
   cursor: pointer;
-  /* margin-right: 5%;
-  margin-top: 9%; */
   transition: transform 0.3s ease;
 }
 
 i:hover {
   transform: scale(1.5);
   transition-duration: 0.3s;
+}
+
+.end-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 5%; 
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: -6%;
+  backdrop-filter: blur(5px); 
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.end-game-text {
+  text-align: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  font-size: 200%;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+
+}
+
+.end-game-row {
+  display: flex;
+  justify-content: space-around;
+  margin: 0% 5%;
+}
+
+.end-game-container img {
+  width: 25%;
+  height: 25%;
+}
+
+.end-game-container img:hover {
+  transform: scale(1.2);
+  transition-duration: 0.3s;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size:500%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #000;
 }

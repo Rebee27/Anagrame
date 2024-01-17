@@ -198,27 +198,10 @@ function buildTable(word) {
   word3.innerHTML = "";
 
   // Add The Letter
-  const misterulLiterei = document.createElement("div");
-  misterulLiterei.classList.add("misterul-literei");
-  misterulLiterei.textContent = "MISTERUL LITEREI:";
-  letter.appendChild(misterulLiterei);
-
-  // Add the Letter below "Misterul Literei"
   const letterElement = document.createElement("span");
   letterElement.classList.add("letter");
   letterElement.textContent = word["litera"];
   letter.appendChild(letterElement);
-  
-  // Add "Misterele bunicii" above the photos
-  const mistereleBunicii = document.createElement("div");
-  const mistereleBunicii2 = document.createElement("div");
-  mistereleBunicii.classList.add("misterele-bunicii");
-  mistereleBunicii.textContent = "MISTERELE DIN GRADINA BUNICII:";
-  mistereleBunicii2.classList.add("misterele-bunicii2");
-  mistereleBunicii2.textContent = "";
-  img1.appendChild(mistereleBunicii);
-  img2.appendChild(mistereleBunicii2);
-  img3.appendChild(mistereleBunicii2);
 
   // Add the Image1
   const imgElement1 = document.createElement("img");

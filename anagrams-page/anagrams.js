@@ -55,15 +55,15 @@ const words = [
     score: 4,
   },
   {
-    text: "STELE",
-    random: "TELSE",
-    image: "../utils/stele.jpg",
+    text: "IARBA",
+    random: "BRAAI",
+    image: "../utils/iarba.jpg",
     score: 9,
   },
   {
-    text: "AVION",
-    random: "NOVAI",
-    image: "../utils/avion.jpg",
+    text: "STELE",
+    random: "ELSTE",
+    image: "../utils/stele.jpg",
     score: 9,
   },
   {
@@ -79,9 +79,9 @@ const words = [
     score: 9,
   },
   {
-    text: "MUNTE",
-    random: "TENUM",
-    image: "../utils/munte.jpg",
+    text: "MORCOV",
+    random: "ROCOVM",
+    image: "../utils/morcov.jpg",
     score: 9,
   },
   {
@@ -91,21 +91,21 @@ const words = [
     score: 9,
   },
   {
-    text: "LUNA",
-    random: "NALU",
-    image: "../utils/luna.jpg",
+    text: "PORUMB",
+    random: "UROPMB",
+    image: "../utils/porumb.jpg",
     score: 11,
   },
   {
-    text: "ALBINA",
-    random: "LANIBA",
-    image: "../utils/albina.jpeg",
+    text: "FRUCTE",
+    random: "UCTFRE",
+    image: "../utils/fructe.jpg",
     score: 11,
   },
   {
-    text: "ELEFANT",
-    random: "EFANELT",
-    image: "../utils/elefant.jpg",
+    text: "DOVLEAC",
+    random: "ODVLACE",
+    image: "../utils/dovleac.jpg",
     score: 16,
   },
 ];
@@ -190,22 +190,18 @@ function checkWord() {
         gameOver = true;
         localStorage.setItem("correct", "true");
         localStorage.setItem("gameOver", "true");
-        endGameAudioElement.play();
         localStorage.setItem("wordIndex", `${position - 1}`);
         localStorage.setItem("score", `${100}`);
+
       }
-      // Play animation for the last word
-      playCorrectAnimation();
+      // Display mesage for endgame
+      displayAllImages()
     }
   } else {
     playWrongAnimation();
     wrongWordAudioElement.play();
   }
 
-  // playCorrectAnimation(() => {
-  //   position = Number(localStorage.getItem("wordIndex"));
-  //   buildTable(words[position]);
-  // });
 }
 
 function playCorrectAnimation(callback) {
@@ -215,13 +211,6 @@ function playCorrectAnimation(callback) {
   // Create and append your animation element (like or smiley face)
   const animationElement = document.createElement("div");
   animationElement.classList.add("correct-animation");
-
-  // const correct = Boolean(localStorage.getItem("correct"));
-  // if (correct === true) {
-  //   animationElement.classList.add("animation-correct");
-  // } else {
-  //   animationElement.classList.add("animation-wrong");
-  // }
 
   animationContainer.appendChild(animationElement);
 
@@ -250,12 +239,6 @@ function playWrongAnimation(callback) {
   const animationElement = document.createElement("div");
   animationElement.classList.add("wrong-animation");
 
-  // const correct = Boolean(localStorage.getItem("correct"));
-  // if (correct === true) {
-  //   animationElement.classList.add("animation-correct");
-  // } else {
-  //   animationElement.classList.add("animation-wrong");
-  // }
 
   animationContainer.appendChild(animationElement);
 
@@ -447,4 +430,76 @@ window.addEventListener("click", function () {
 function stopAudio() {
   audioElement.pause();
   audioElement.currentTime = 0;
+}
+
+
+function restartGame() {
+  // Reset game state in localStorage
+  localStorage.setItem("gameOver", "false");
+  localStorage.setItem("score", "0");
+  localStorage.setItem("wordIndex", "0");
+  localStorage.setItem("correct", "false");
+
+  // Reload the page after a delay
+  restartAudioElement = document.createElement("audio");
+  restartAudioElement.src = "../utils/sounds/restart.mp3";
+  restartAudioElement.play();
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 3000);
+}
+
+
+
+function displayAllImages() {
+  const endGameContainer = document.querySelector(".end-game-container");
+
+  // Audio
+  const audioElement = document.createElement("audio");
+  audioElement.src = "../utils/sounds/endgame.mp3";
+  audioElement.play();
+
+  // Set the number of columns in the grid
+  const numColumns = 3; // You can adjust this based on your preference
+
+  // Calculate the number of rows based on the total number of images and columns
+  const numRows = Math.ceil(words.length / numColumns);
+
+  // Iterate through the words array
+  for (let row = 0; row < numRows; row++) {
+    // Create a row element for each iteration
+    const rowElement = document.createElement("div");
+    rowElement.classList.add("end-game-row");
+
+    // Iterate through each column in the row
+    for (let col = 0; col < numColumns; col++) {
+      const index = row * numColumns + col;
+
+      // Check if there are still images left
+      if (index < words.length) {
+        // Create image element
+        const endGameImageElement = document.createElement("img");
+        endGameImageElement.width = 100; // Set the desired width
+        endGameImageElement.height = 100; // Set the desired height
+        endGameImageElement.alt = words[index]["text"];
+        endGameImageElement.src = words[index]["image"];
+
+        // Append the image element to the row
+        rowElement.appendChild(endGameImageElement);
+      }
+    }
+
+    // Append the row to the container
+    endGameContainer.appendChild(rowElement);
+  }
+
+  // Show the end game container
+  endGameContainer.style.display = "grid";
+
+  const closeButton = document.querySelector('.close-button');
+  closeButton.addEventListener('click', function() {
+    restartGame();
+    backgroundAudio.pause();
+  });
 }

@@ -116,18 +116,11 @@ i:hover {
 }
 
 .letter {
-  font-size: 160%;
+  font-size: 230%;
   margin: 0;
   transition: transform 0.3s ease;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   cursor: pointer;
-}
-
-.misterele-bunicii{
-	font-size:100%;
-	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  
-	
 }
 
 .letter:hover {
@@ -150,7 +143,11 @@ i:hover {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin-top: 5%;
+  margin-top: 6%;
+}
+
+.cuvinte{
+  margin-left: 5%;
 }
 
 .imgs {
@@ -166,9 +163,7 @@ i:hover {
   margin-bottom: -30px;
   display: block;
 }
-.image2, .image3{
-	margin-top: 40px;
-}
+
 
 .word1,
 .word2,
