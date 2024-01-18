@@ -261,13 +261,13 @@ i:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 5%; 
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5%;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin-top: -6%;
-  backdrop-filter: blur(5px); 
+  margin-top: -3%;
+  backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -279,7 +279,6 @@ i:hover {
   font-size: 200%;
   font-weight: bold;
   transform: translate(-50%, -50%);
-
 }
 
 .end-game-row {
@@ -302,7 +301,7 @@ i:hover {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size:500%;
+  font-size: 500%;
   cursor: pointer;
   background: none;
   border: none;

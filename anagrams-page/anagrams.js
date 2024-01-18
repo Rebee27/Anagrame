@@ -104,7 +104,7 @@ const words = [
   },
   {
     text: "DOVLEAC",
-    random: "ODVLACE",
+    random: "DOVLECA",
     image: "../utils/dovleac.jpg",
     score: 16,
   },
@@ -192,16 +192,14 @@ function checkWord() {
         localStorage.setItem("gameOver", "true");
         localStorage.setItem("wordIndex", `${position - 1}`);
         localStorage.setItem("score", `${100}`);
-
       }
       // Display mesage for endgame
-      displayAllImages()
+      displayAllImages();
     }
   } else {
     playWrongAnimation();
     wrongWordAudioElement.play();
   }
-
 }
 
 function playCorrectAnimation(callback) {
@@ -238,7 +236,6 @@ function playWrongAnimation(callback) {
   // Create and append your animation element (like or smiley face)
   const animationElement = document.createElement("div");
   animationElement.classList.add("wrong-animation");
-
 
   animationContainer.appendChild(animationElement);
 
@@ -432,7 +429,6 @@ function stopAudio() {
   audioElement.currentTime = 0;
 }
 
-
 function restartGame() {
   // Reset game state in localStorage
   localStorage.setItem("gameOver", "false");
@@ -449,8 +445,6 @@ function restartGame() {
     window.location.reload();
   }, 3000);
 }
-
-
 
 function displayAllImages() {
   const endGameContainer = document.querySelector(".end-game-container");
@@ -485,6 +479,15 @@ function displayAllImages() {
         endGameImageElement.alt = words[index]["text"];
         endGameImageElement.src = words[index]["image"];
 
+        const wordAudioElement = document.createElement("audio");
+        wordAudioElement.src = `../utils/sounds/${words[index][
+          "text"
+        ].toLowerCase()}.mp3`;
+
+        endGameImageElement.addEventListener("mouseover", () => {
+          wordAudioElement.play();
+        });
+
         // Append the image element to the row
         rowElement.appendChild(endGameImageElement);
       }
@@ -497,8 +500,8 @@ function displayAllImages() {
   // Show the end game container
   endGameContainer.style.display = "grid";
 
-  const closeButton = document.querySelector('.close-button');
-  closeButton.addEventListener('click', function() {
+  const closeButton = document.querySelector(".close-button");
+  closeButton.addEventListener("click", function () {
     restartGame();
     backgroundAudio.pause();
   });
