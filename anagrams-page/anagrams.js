@@ -479,6 +479,15 @@ function displayAllImages() {
         endGameImageElement.alt = words[index]["text"];
         endGameImageElement.src = words[index]["image"];
 
+        const wordAudioElement = document.createElement("audio");
+        wordAudioElement.src = `../utils/sounds/${words[index][
+          "text"
+        ].toLowerCase()}.mp3`;
+
+        endGameImageElement.addEventListener("mouseover", () => {
+          wordAudioElement.play();
+        });
+
         // Append the image element to the row
         rowElement.appendChild(endGameImageElement);
       }
